@@ -16,6 +16,12 @@ class BookRepositoryTest extends KernelTestCase
 
     public function testFindAll(): void
     {
+        $book = $this->createBook('The Eagle Has Landed', 'Jack Higgins');
+        $this->bookRepository->add($book);
+
+        $book = $this->createBook('Carrie', 'Stephen King');
+        $this->bookRepository->add($book);
+
         $books = $this->bookRepository->findAll();
         $this->assertIsArray($books);
         $this->assertCount(2, $books);
@@ -24,33 +30,42 @@ class BookRepositoryTest extends KernelTestCase
 
     public function testFindOneByTitle(): void
     {
-        $book = $this->bookRepository->findOneBy(['title' => 'Carrie']);
-        $this->assertInstanceOf(Book::class, $book);
-        $this->assertBookEquals($book, "Carrie", "Stephen King");
+        $book = $this->createBook('Carrie', 'Stephen King');
+        $this->bookRepository->add($book);
+
+        $savedBook = $this->bookRepository->findOneBy(['title' => 'Carrie']);
+        $this->assertInstanceOf(Book::class, $savedBook);
+        $this->assertBookEquals($savedBook, 'Carrie', 'Stephen King');
     }
 
     public function testFindOneByAuthor(): void
     {
-        $book = $this->bookRepository->findOneBy(['author' => 'Jack Higgins']);
-        $this->assertInstanceOf(Book::class, $book);
-        $this->assertBookEquals($book, "The Eagle Has Landed", "Jack Higgins");
+        $book = $this->createBook('The Eagle Has Landed', 'Jack Higgins');
+        $this->bookRepository->add($book);
+
+        $savedBook = $this->bookRepository->findOneBy(['author' => 'Jack Higgins']);
+        $this->assertInstanceOf(Book::class, $savedBook);
+        $this->assertBookEquals($savedBook, 'The Eagle Has Landed', 'Jack Higgins');
     }
 
     public function testAddOne(): void
     {
-        $book = $this->createBook("The Martian", "Andy Weir");
+        $book = $this->createBook('The Martian', 'Andy Weir');
         $this->bookRepository->add($book);
 
         $savedBook = $this->bookRepository->findOneBy(['id' => $book->getId()]);
-        $this->assertBookEquals($savedBook, "The Martian", "Andy Weir");
+        $this->assertBookEquals($savedBook, 'The Martian', 'Andy Weir');
     }
 
     public function testRemoveOne(): void
     {
-        $book = $this->bookRepository->findOneBy(['title' => "Carrie"]);
+        $book = $this->createBook('Carrie', 'Stephen King');
+        $this->bookRepository->add($book);
+
+        $book = $this->bookRepository->findOneBy(['title' => 'Carrie']);
         $this->bookRepository->remove($book);
 
-        $removedBook = $this->bookRepository->findOneBy(['title' => "Carrie"]);
+        $removedBook = $this->bookRepository->findOneBy(['title' => 'Carrie']);
         $this->assertNull($removedBook);
     }
 
