@@ -1,3 +1,9 @@
-php/vendor/*
-php/var/*
-php/.phpunit.result.cache
+.idea
+.ipynb_checkpoints
+.mypy_cache
+.vscode
+__pycache__
+.pytest_cache
+
+# macOS
+.DS_Store
