@@ -16,13 +16,14 @@ class Agent:
         You have been given the following additional instructions:
 
         - Only consider Python files in the /app directory for this task.
+        - Always read the relevant files from the workspace before starting your work
+        - Continue until your assignment is completed, and the tests succeed
         - Avoid unnecessary or unrelated changes. Make the smallest possible change that meets the goal
         - Always write changes to files to the original files
         - Only use the 'test' tool to run all tests. Do not use 'pytest' or any other testing tool.
-        - Only use the 'diff' tool to compare changes with the original files. Do not use any other tool.
+        - Only use the 'diff' tool to compare your work with the original files in the workspace.
         - Check that tests pass with the 'test' tool
         - Only use the 'write_file' tool to write your changes to the files
-        - Before using the 'write_file' tool, use the 'test' tool to check that all tests pass
 
         Explain your process or reasoning. Make the changes needed to make the tests pass.
         """
