@@ -6,13 +6,7 @@ from dagger import dag, function, object_type
 class Agent:
     @function
     async def heal(self, source: dagger.Directory) -> dagger.Container:
-        ws = (
-            dag.workspace()
-            .with_directory("/app", source.without_directory(".dagger"))
-            .with_workdir("/app")
-            .with_mounted_cache("/root/.cache/pip", dag.cache_volume("python-pip"))
-            .with_exec(["pip", "install", "-r", "requirements.txt"])
-        )
+        ws = dag.workspace(source)
 
         prompt = f"""
         You are an expert in the Python FastAPI framework. You understand the framework and its ecosystem. You have a deep understanding of the FastAPI lifecycle and can build complex applications with ease. You are comfortable with the command line and can navigate the FastAPI directory structure with ease.

@@ -4,10 +4,22 @@ from dagger import dag, function, object_type
 
 @object_type
 class Workspace:
-    ctr: dagger.Container = (
-        dag.container()
-        .from_("alpine:3.14.0").from_("python:3.11")
-    )
+    source: dagger.Directory
+
+    @classmethod
+    async def create(
+        cls,
+        source: dagger.Directory,
+    ):
+        cls = (
+            dag.container()
+            .from_("python:3.11")
+            .with_directory("/app", source)
+            .with_workdir("/app")
+            .with_mounted_cache("/root/.cache/pip", dag.cache_volume("python-pip"))
+            .with_exec(["pip", "install", "-r", "requirements.txt"])
+        )
+        return cls(source=source)
 
     @function
     async def test(self) -> str:
