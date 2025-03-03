@@ -12,7 +12,7 @@ class Book:
         return (
             dag.container()
             .from_(f"python:{version}")
-            .with_directory("/app", self.source.without_directory(".dagger"))
+            .with_directory("/app", self.source.without_directory(".dagger").without_directory("agent"))
             .with_workdir("/app")
             .with_mounted_cache("/root/.cache/pip", dag.cache_volume("python-pip"))
             .with_exec(["pip", "install", "-r", "requirements.txt"])
