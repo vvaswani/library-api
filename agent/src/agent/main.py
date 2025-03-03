@@ -5,7 +5,7 @@ from dagger import dag, function, object_type
 @object_type
 class Agent:
     @function
-    async def heal(self, source: dagger.Directory) -> dagger.Container:
+    def heal(self, source: dagger.Directory) -> dagger.Container:
         before = dag.workspace(source=source)
 
         prompt = f"""
@@ -24,11 +24,11 @@ class Agent:
 
         Explain your process or reasoning. Make the changes needed to make the tests pass.
         """
-        after = await (
+        after = (
             dag.llm()
             .with_workspace(before)
             .with_prompt(prompt)
             .workspace()
         )
 
-        return after.ctr()
+        return after.container()
