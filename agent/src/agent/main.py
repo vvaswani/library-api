@@ -25,7 +25,7 @@ class Agent:
         - Check that tests pass with the 'test' tool
         - Only use the 'write_file' tool to write your changes to the files
 
-        Explain your process or reasoning. Make the changes needed to make the tests pass.
+        Work silently without explaining your process or reasoning. Make the changes needed to make the tests pass. Only after all tests pass, provide a brief summary of the issues identified and changes made.
         """
         after = (
             dag.llm()
