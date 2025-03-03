@@ -24,8 +24,9 @@ class Agent:
         - Only use the 'diff' tool to compare your work with the original files in the workspace.
         - Check that tests pass with the 'test' tool
         - Only use the 'write_file' tool to write your changes to the files
+        - Remember to update the tests after making changes
 
-        Explain your process or reasoning very briefly. Make the changes needed to make the tests pass.
+        Explain your process or reasoning. Make the changes needed to make the tests pass.
         """
         after = (
             dag.llm()
