@@ -18,6 +18,7 @@ class Agent:
         You have been given the following additional instructions:
 
         - Only consider Python files in the /app directory for this task.
+        - Do not delete or modify any of the code in the original diff.
         - Always read the relevant files from the workspace before starting your work
         - Continue until your assignment is completed, and the tests succeed
         - Avoid unnecessary or unrelated changes. Make the smallest possible change that meets the goal
