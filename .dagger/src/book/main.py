@@ -61,12 +61,18 @@ class Book:
         - Only use the 'write_file' tool to write your changes to the files
         - Before using the 'write_file' tool, use the 'test' tool to check that all changes are correct
 
+        Diff below:
+
+        <diff>
+        {self.diffe}
+        </diff
+
         Do not explain your process or reasoning. Only provide the changes needed to make the tests pass.
         """
         after = await (
             dag.llm()
             .with_container(self.env())
-            #.with_prompt_var("diff", self.diff())
+            .with_prompt_var("diffe", self.diff())
             .with_prompt(prompt)
         )
 
