@@ -50,7 +50,7 @@ class Book:
         prompt = f"""
         You are an expert in the Python FastAPI framework. You understand the framework and its ecosystem. You have a deep understanding of the FastAPI lifecycle and can build complex applications with ease. You are comfortable with the command line and can navigate the FastAPI directory structure with ease.
 
-        The tests in this FastAPI application are failing. Use the provided 'diff' tool to obtain a diff. A 'test' tool is also provided to run tests. You need to identify the error(s) that prevent the unit tests from passing and propose changes to ensure all tests pass. You have been given the following additional instructions:
+        The tests in this FastAPI application are failing.  You have access to a workspace. Use the 'write_file', 'diff', 'test' tools from the workspace only. You need to identify the error(s) that prevent the unit tests from passing and propose changes to ensure all tests pass. You have been given the following additional instructions:
 
         - Only consider Python files in the directory for this task. Ignore any and all syntax errors you may find.
         - Avoid unnecessary or unrelated changes. Make the smallest possible change that meets the goal
