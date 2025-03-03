@@ -159,7 +159,7 @@ class TestBookRouter:
         response = client.get("/api/books/")
         assert response.status_code == 200
         data = response.json()
-        assert len(data) >= 2
+        assert len(data) == 2
         assert isinstance(data, list)
         assert any(book["title"] == TEST_BOOKS[0]["title"] for book in data)
         assert any(book["title"] == TEST_BOOKS[1]["title"] for book in data)
