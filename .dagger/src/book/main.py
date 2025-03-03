@@ -64,7 +64,7 @@ class Book:
         Diff below:
 
         <diff>
-        {self.diffe}
+        {diffe}
         </diff
 
         Do not explain your process or reasoning. Only provide the changes needed to make the tests pass.
