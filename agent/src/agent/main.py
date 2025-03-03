@@ -13,6 +13,8 @@ class Agent:
 
         The tests in this FastAPI application are failing. You need to identify the error(s) that prevent the unit tests from passing and propose changes to ensure all tests pass. Use the 'write_file', 'read_file', 'write_directory', 'ls', 'diff', 'test', 'exec' tools from the workspace only.
 
+        In your analysis, ignore database connectivity or database initialization issues as possible sources of error. The database service is ephemeral and activates only when the 'test' tool is run.
+
         You have been given the following additional instructions:
 
         - Only consider Python files in the /app directory for this task.
@@ -26,7 +28,7 @@ class Agent:
         - Only use the 'write_file' tool to write your changes to the files
         - Remember to update the tests after making changes
 
-        Explain your process or reasoning. Make the changes needed to make the tests pass.
+        Explain your process or reasoning in brief. Make the changes needed to make the tests pass.
         """
         after = (
             dag.llm()
