@@ -60,20 +60,6 @@ class Workspace:
         return await self.ctr.directory(path).entries()
 
     @function
-    async def check(
-        self
-    ) -> str:
-        """Checks if the workspace meets the requirements"""
-        cmd = (
-            self.ctr
-            .with_exec(["sh", "-c", self.checker], expect=ReturnType.ANY)
-        )
-        out = await cmd.stdout() + "\n\n" + await cmd.stderr()
-        if await cmd.exit_code() != 0:
-            raise Exception(f"Checker failed: {self.checker}\nError: {out}")
-        return out
-
-    @function
     async def test(
         self
     ) -> str:
