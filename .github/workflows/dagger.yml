@@ -12,9 +12,10 @@ jobs:
     name: dagger-agent
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: test
+      - name: Test
+        id: checkout
         uses: dagger/dagger-for-github@8.0.0
         with:
           version: "0.17.0-llm.4"
@@ -22,7 +23,7 @@ jobs:
           verb: call
           args: test
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
-      - name: heal
+      - name: Heal
         uses: dagger/dagger-for-github@8.0.0
         with:
           version: "0.17.0-llm.4"
@@ -31,4 +32,4 @@ jobs:
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        if: always() && steps.test.outcome == 'failure'
+        if: ${{ steps.test.outcome == 'failure' }}
