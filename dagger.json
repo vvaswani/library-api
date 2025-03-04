@@ -1,8 +1,13 @@
 {
-  "name": "book",
+  "name": "agent",
   "engineVersion": "v0.17.0-llm.4",
   "sdk": {
     "source": "python"
   },
-  "source": ".dagger"
+  "source": "agent",
+  "dependencies": [
+    {
+      "name": "workspace",
+      "source": "agent/workspace"
+    }
 }
