@@ -80,7 +80,7 @@ class Agent:
         Do not install new tools.
         Do not stop until all tests pass with the test tool.
         """
-        after = (
+        after = await (
             dag.llm()
             .with_workspace(before)
             .with_prompt(prompt)
@@ -89,6 +89,6 @@ class Agent:
 
         # completed_work = after.workspace().container().directory("/app")
 
-        summary = await after.workspace().llm().with_prompt("summarize your changes").last_reply()
+        summary = await after.with_prompt("summarize your changes").last_reply()
 
         return await dag.workspace().comment(repository, ref, summary, token)
