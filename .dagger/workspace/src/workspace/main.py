@@ -89,7 +89,7 @@ class Workspace:
     async def comment(
         self,
         repository: Annotated[str, Doc("The owner and repository name")],
-        ref: Annotated[int, Doc("The ref name")],
+        ref: Annotated[str, Doc("The ref name")],
         body: Annotated[str, Doc("The comment body")],
         token: Annotated[Secret, Doc("The GitHub token")],
     ) -> str:
