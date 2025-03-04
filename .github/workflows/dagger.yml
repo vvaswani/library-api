@@ -1,7 +1,11 @@
 name: dagger
 on:
-  [push, pull_request]:
-    branches: [main]
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   dagger-agent:
