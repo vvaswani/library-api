@@ -27,6 +27,7 @@ class Agent:
         Focus only on Python files within the /app directory.
         Begin by reading relevant files from the workspace.
         Use the write_file, read_file, ls, diff, and test tools only.
+        The write_file tool creates a new file. When modifying files with the write_file tool, be extremely careful to avoid overwriting the entire file.
         Do not interact directly with the database; use the test tool only.
         Make the smallest change required to fix the failing tests.
         Write changes directly to the files in the workspace and only run the tests after.
