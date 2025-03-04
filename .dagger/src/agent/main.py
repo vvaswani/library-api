@@ -10,7 +10,7 @@ class Agent:
     def heal(
         self,
         source: Annotated[dagger.Directory, DefaultPath("/")]
-    ) -> dagger.Container:
+    ) -> str:
         before = dag.workspace(source=source)
 
         prompt = f"""
@@ -41,4 +41,4 @@ class Agent:
             .workspace()
         )
 
-        return after.container()
+        return after.last_reply()
