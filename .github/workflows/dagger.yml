@@ -32,4 +32,4 @@ jobs:
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        if: ${{ steps.test.outcome == 'failure' }}
+        if: ${{ always() && steps.test.outcome == 'failure' }}
