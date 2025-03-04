@@ -18,7 +18,7 @@ class Agent:
 
         Your task is to resolve failing unit tests in a FastAPI application which uses Pydantic and SQLAlchemy.
 
-        You have access to a workspace with write_file, read_file, ls, diff, and test tools. You must use these tools to identify the errors and fix the failing tests.
+        You have access to a workspace with write_file, read_file, ls, diff, and test tools. You must use these tools to identify the errors and fix the failing tests. Provide a thorough explanation of your reasoning and process.
 
         Additional requirements:
 
@@ -32,7 +32,6 @@ class Agent:
         Confirm the tests pass by running the test tool (not pytest or any other tool).
         Do not install new tools.
         Do not stop until all tests pass with the test tool.
-        Provide a thorough explanation of your reasoning and process.
         """
         after = (
             dag.llm()
