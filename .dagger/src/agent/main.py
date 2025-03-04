@@ -89,6 +89,6 @@ class Agent:
 
         # completed_work = after.workspace().container().directory("/app")
 
-        summary = await after.llm.with_prompt("summarize your changes").last_reply()
+        summary = await after.llm().with_prompt("summarize your changes").last_reply()
 
         return await dag.workspace().comment(repository, ref, summary, token)
