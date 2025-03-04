@@ -52,7 +52,7 @@ class Workspace:
     @function
     async def test(
         self
-    ) -> Self:
+    ) -> str:
         postgresdb = (
             dag.container()
             .from_("postgres:alpine")
@@ -70,16 +70,7 @@ class Workspace:
         )
         if await cmd.exit_code() != 0:
             raise Exception(f"Tests failed. \nError: {await cmd.stderr()}")
-        self.ctr = cmd # FIXME
-        self.last_exec_output = await cmd.stdout()
-        return self
-
-    @function
-    def get_exec_output(
-        self
-    ) -> str:
-        """Returns the output of the last executed command"""
-        return self.last_exec_output
+        return await cmd.stdout()
 
     @function
     async def diff(
