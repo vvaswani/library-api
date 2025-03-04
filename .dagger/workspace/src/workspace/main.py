@@ -1,5 +1,6 @@
 from typing import Annotated, Self
-from dagger import Container, dag, Directory, DefaultPath, Doc, function, object_type, ReturnType
+from dagger import Container, dag, Directory, DefaultPath, Doc, Secret, function, object_type, ReturnType
+import re
 
 @object_type
 class Workspace:
@@ -86,15 +87,22 @@ class Workspace:
 
     @function
     async def comment(
-        self
+        self,
+        repository: Annotated[str, Doc("The owner and repository name")],
+        ref: Annotated[int, Doc("The ref name")],
+        body: Annotated[str, Doc("The comment body")],
+        token: Annotated[Secret, Doc("The GitHub token")],
     ) -> str:
         """Adds a comment to the PR"""
-        source = dag.container().from_("alpine/git").with_workdir("/app").with_directory("/app", self.source)
-        # make sure source is a git directory
-        if ".git" not in await self.source.entries():
-            source = source.with_exec(["git", "init"]).with_exec(["git", "add", "."]).with_exec(["git", "commit", "-m", "'initial'"])
-        # return the git diff of the changes in the workspace
-        return await source.with_directory(".", self.ctr.directory(".")).with_exec(["git", "diff"]).stdout()
+        repository_url = f"https://github.com/{repository}"
+        pr_number = re.search(r"(\d+)", ref).group(1)
+        return await (
+          dag
+          .github_comment(token, repository_url, issue=pr_number)
+          .create(body)
+        )
+
+
 
     @function
     def container(
