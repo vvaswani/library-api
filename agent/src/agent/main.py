@@ -26,7 +26,7 @@ class Agent:
         Write changes directly to the original files.
         Use diff to compare your changes with the original files.
         Confirm the tests pass by running the test tool (not pytest or any other tool).
-        Provide concise explanations of your reasoning and process (up to 60 words).
+        Explain your reasoning and process. Be verbose.
         """
         after = (
             dag.llm()
