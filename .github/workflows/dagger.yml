@@ -21,3 +21,5 @@ jobs:
           verb: call
           args: heal
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
