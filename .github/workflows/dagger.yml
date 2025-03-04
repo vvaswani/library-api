@@ -14,15 +14,29 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-#      - name: Test
-#        id: test
-#        uses: dagger/dagger-for-github@8.0.0
-#        with:
-#          version: "0.17.0-llm.4"
-#          module: workspace
-#          verb: call
-#          args: test
-#          cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
+      - name: Test
+        id: test
+        uses: dagger/dagger-for-github@8.0.0
+        with:
+          version: "0.17.0-llm.4"
+          module: workspace
+          verb: call
+          args: test
+          cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
+      - name: Diagnose
+        id: diagnose
+        uses: dagger/dagger-for-github@8.0.0
+        with:
+          version: "0.17.0-llm.4"
+          verb: call
+          args: diagnose --token=env://GITHUB_API_TOKEN
+          cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: "gpt-4o"
+          GITHUB_API_TOKEN: ${{ secrets.GITHUB_API_TOKEN }}
+        if: ${{ always() && steps.test.conclusion == 'failure' }}
+
 #      - name: Heal
 #        id: heal
 #        uses: dagger/dagger-for-github@8.0.0
@@ -35,20 +49,19 @@ jobs:
 #          # GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 #          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 #          OPENAI_MODEL: "gpt-4o"
+#          GITHUB_API_TOKEN: ${{ secrets.GITHUB_API_TOKEN }}
 #        if: ${{ always() && steps.test.conclusion == 'failure' }}
-      - name: Comment
-        id: comment
-        uses: dagger/dagger-for-github@8.0.0
-        if: ${{ github.event_name == 'pull_request' }}
-        with:
-          version: "0.17.0-llm.4"
-          module: workspace
-          verb: call
-          args: comment --repository=env://GITHUB_REPOSITORY --ref=env://GITHUB_REF_NAME --body="Dagger is running on this PR" --token=env://GITHUB_API_TOKEN
-          cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_MODEL: "gpt-4o"
-          #PR_NUMBER: ${{ github.event.number }}
-          #REPOSITORY_URL: "https://github.com/${{ github.repository }}"
-          GITHUB_API_TOKEN: ${{ secrets.GITHUB_API_TOKEN }}
+#      - name: Comment
+#        id: comment
+#        uses: dagger/dagger-for-github@8.0.0
+#        if: ${{ github.event_name == 'pull_request' }}
+#        with:
+#          version: "0.17.0-llm.4"
+#          module: workspace
+#          verb: call
+#          args: comment --repository=env://GITHUB_REPOSITORY --ref=env://GITHUB_REF_NAME --body="Dagger is running on this PR" --token=env://GITHUB_API_TOKEN
+#          cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
+#        env:
+#          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+#          OPENAI_MODEL: "gpt-4o"
+#          GITHUB_API_TOKEN: ${{ secrets.GITHUB_API_TOKEN }}

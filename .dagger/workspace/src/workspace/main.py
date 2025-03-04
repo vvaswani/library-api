@@ -95,7 +95,7 @@ class Workspace:
     ) -> str:
         """Adds a comment to the PR"""
         repository_url = f"https://github.com/{repository}"
-        pr_number = re.search(r"(\d+)", ref).group(1)
+        pr_number = int(re.search(r"(\d+)", ref).group(1))
         return await (
           dag
           .github_comment(token, repository_url, issue=pr_number)
