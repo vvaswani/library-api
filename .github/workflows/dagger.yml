@@ -13,5 +13,6 @@ jobs:
         with:
           version: "latest"
           verb: call
+          module: agent
           args: heal
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
