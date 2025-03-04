@@ -4,8 +4,8 @@ on:
     branches: [main]
 
 jobs:
-  hello:
-    name: hello
+  dagger-agent:
+    name: dagger-agent
     runs-on: ubuntu-latest
     steps:
       - name: Call Dagger Function
@@ -13,6 +13,5 @@ jobs:
         with:
           version: "latest"
           verb: call
-          module: agent
           args: heal
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
