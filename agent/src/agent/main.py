@@ -18,8 +18,17 @@ class Agent:
 
         Follow these instructions:
 
-        Focus only on Python files within the /app directory.
-        Begin by reading relevant files from the workspace.
+        1. Focus only on Python files within the /app directory.
+        2. Begin by reading relevant files from the workspace.
+        3. Run the tests with the test tool to identify the failing tests.
+        4. Read the error messages to identify the root cause of the failures.
+        5. Use the diff tool to compare what changed from the original files.
+        6. Update the relevant files and/or tests to fix the failing tests.
+        7. Run the tests again with the test tool to confirm all tests pass.
+        8. If the tests fail, return to step 4 and try again. Keep working until the tests pass.
+
+        You must observe the following rules:
+
         Use the write_file, read_file, ls, diff, and test tools only.
         Do not interact directly with the database; use the test tool only.
         Make the smallest change required to fix the failing tests.
