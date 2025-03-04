@@ -30,6 +30,8 @@ class Agent:
         Write changes directly to the original files.
         Use diff to compare your changes with the original files.
         Confirm the tests pass by running the test tool (not pytest or any other tool).
+        Do not install new tools.
+        Do not stop until all tests pass with the test tool.
         Provide a thorough explanation of your reasoning and process.
         """
         after = (
