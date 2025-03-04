@@ -85,6 +85,18 @@ class Workspace:
         return await source.with_directory(".", self.ctr.directory(".")).with_exec(["git", "diff"]).stdout()
 
     @function
+    async def comment(
+        self
+    ) -> str:
+        """Adds a comment to the PR"""
+        source = dag.container().from_("alpine/git").with_workdir("/app").with_directory("/app", self.source)
+        # make sure source is a git directory
+        if ".git" not in await self.source.entries():
+            source = source.with_exec(["git", "init"]).with_exec(["git", "add", "."]).with_exec(["git", "commit", "-m", "'initial'"])
+        # return the git diff of the changes in the workspace
+        return await source.with_directory(".", self.ctr.directory(".")).with_exec(["git", "diff"]).stdout()
+
+    @function
     def container(
         self
     ) -> Container:
