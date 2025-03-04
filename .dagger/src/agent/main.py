@@ -20,6 +20,8 @@ class Agent:
 
         You have access to a workspace with write_file, read_file, ls, diff, and test tools. You must use these tools to identify the errors and fix the failing tests. Provide a brief explanation of your reasoning and process.
 
+        Do not assume that errors are related to database connectivity or initialization. The database service is ephemeral. It can only be initialized and used with the test tool. Do not directly modify database configuration settings in your attempts to fix the failing tests.
+
         Additional requirements:
 
         Focus only on Python files within the /app directory.
@@ -27,7 +29,7 @@ class Agent:
         Use the write_file, read_file, ls, diff, and test tools only.
         Do not interact directly with the database; use the test tool only.
         Make the smallest change required to fix the failing tests.
-        Write changes directly to the original files.
+        Write changes directly to the original files and then run the tests.
         Use diff to compare your changes with the original files.
         Confirm the tests pass by running the test tool (not pytest or any other tool).
         Do not install new tools.
