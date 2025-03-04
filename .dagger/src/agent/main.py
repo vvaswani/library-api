@@ -22,7 +22,7 @@ class Agent:
 
         Do not assume that errors are related to database connectivity or initialization. The database service is ephemeral. It can only be initialized and used with the test tool. Do not directly modify database configuration settings in your attempts to fix the failing tests.
 
-        The write_file tool creates a new file. When making changes with the write_file tool, you must be extremely careful to makes your changes in place. To make changes with the write_file tool, read the original file contents, modify it in place, and write the modified file back. Double check that you have not deleted important code when modifying existing files.
+        The write_file tool creates a new file. When making changes with the write_file tool, you must be extremely careful to avoid overwriting the entire file. To make changes with the write_file tool, read the original file contents, modify in place, and write the complete modified contents back. Double check that you have not deleted important code when modifying existing files.
 
         Additional requirements:
 
