@@ -52,7 +52,7 @@ class Workspace:
     @function
     async def test(
         self
-    ) -> str:
+    ) -> Self:
         postgresdb = (
             dag.container()
             .from_("postgres:alpine")
@@ -62,14 +62,24 @@ class Workspace:
             .as_service(args=[], use_entrypoint=True)
         )
 
-        return await (
+        cmd = (
             self.ctr
             .with_service_binding("db", postgresdb)
             .with_env_variable("DATABASE_URL", "postgresql://postgres:secret@db/app_test")
-            .with_exec(["pytest"])
-            .stdout()
+            .with_exec(["sh", "-c", "pytest"], expect=ReturnType.ANY)
         )
+        if await cmd.exit_code() != 0:
+            raise Exception(f"Tests failed. \nError: {await cmd.stderr()}")
+        self.ctr = cmd # FIXME
+        self.last_exec_output = await cmd.stdout()
+        return self
 
+    @function
+    def get_exec_output(
+        self
+    ) -> str:
+        """Returns the output of the last executed command"""
+        return self.last_exec_output
 
     @function
     async def diff(
