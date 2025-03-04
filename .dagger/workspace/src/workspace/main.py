@@ -76,6 +76,7 @@ class Workspace:
             self.ctr
             .with_service_binding("db", postgresdb)
             .with_env_variable("DATABASE_URL", "postgresql://postgres:secret@db/app_test")
+            .terminal()
             .with_exec(["pytest"])
             .stdout()
         )
