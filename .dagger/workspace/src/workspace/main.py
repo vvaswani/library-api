@@ -1,5 +1,5 @@
 from typing import Annotated, Self
-from dagger import Container, dag, Directory, Doc, function, object_type, ReturnType
+from dagger import Container, dag, Directory, DefaultPath, Doc, function, object_type, ReturnType
 
 @object_type
 class Workspace:
@@ -10,7 +10,7 @@ class Workspace:
     @classmethod
     async def create(
         cls,
-        source: Annotated[Directory, Doc("The context for the workspace")] = dag.directory(),
+        source: Annotated[Directory, Doc("The context for the workspace"), DefaultPath("/")],
     ):
         ctr = (
             dag
