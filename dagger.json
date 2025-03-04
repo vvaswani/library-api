@@ -4,10 +4,11 @@
   "sdk": {
     "source": "python"
   },
-  "source": "agent",
   "dependencies": [
     {
       "name": "workspace",
-      "source": "agent/workspace"
+      "source": ".dagger/workspace"
     }
+  ],
+  "source": ".dagger"
 }
