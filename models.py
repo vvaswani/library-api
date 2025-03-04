@@ -19,10 +19,6 @@ class Book(Base):
     title: Mapped[str] = mapped_column(String(255), index=True)
     author: Mapped[str] = mapped_column(String(255))
 
-    def __repr__(self):
-        return f"<Book {self.title} by {self.author}>"
-
-
 # Pydantic models
 class BookIn(BaseModel):
     """Pydantic model for book input"""
