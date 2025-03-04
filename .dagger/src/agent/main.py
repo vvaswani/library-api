@@ -29,7 +29,7 @@ class Agent:
         Use the write_file, read_file, ls, diff, and test tools only.
         Do not interact directly with the database; use the test tool only.
         Make the smallest change required to fix the failing tests.
-        Write changes directly to the original files and then run the tests.
+        Write changes directly to the original files and only then run the tests.
         Use diff to compare your changes with the original files.
         Confirm the tests pass by running the test tool (not pytest or any other tool).
         Do not install new tools.
