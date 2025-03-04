@@ -34,5 +34,5 @@ jobs:
         env:
           # GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_MODEL: "gpt-4o-mini"
+          OPENAI_MODEL: "gpt-4o"
         if: ${{ always() && steps.test.conclusion == 'failure' }}
