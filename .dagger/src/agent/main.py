@@ -78,7 +78,7 @@ class Agent:
         Use diff to compare your changes with the original files.
         Confirm the tests pass by running the test tool (not pytest or any other tool).
         Do not install new tools.
-        Do not post a comment until all tests pass with the test tool.
+        Post a comment at the end.
         """
         after = (
             dag.llm()
