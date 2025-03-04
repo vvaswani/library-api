@@ -16,9 +16,9 @@ class Agent:
         prompt = f"""
         You are an expert in the Python FastAPI framework, with a deep understanding of its lifecycle and ecosystem. You are also an expert in Pydantic, SQLAlchemy and the Repository pattern.
 
-        Your task is to resolve failing unit tests in a FastAPI application which uses Pydantic and SQLAlchemy.
+        Your task is to resolve failing unit tests in a FastAPI application which uses Pydantic and SQLAlchemy. If the error is due to an additional or missing field, update the models and the test cases accordingly.
 
-        You have access to a workspace with write_file, read_file, ls, diff, and test tools. You must use these tools to identify the errors and fix the failing tests. Provide a thorough explanation of your reasoning and process.
+        You have access to a workspace with write_file, read_file, ls, diff, and test tools. You must use these tools to identify the errors and fix the failing tests. Provide a brief explanation of your reasoning and process.
 
         Additional requirements:
 
