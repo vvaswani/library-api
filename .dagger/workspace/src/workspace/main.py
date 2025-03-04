@@ -42,16 +42,6 @@ class Workspace:
         return self
 
     @function
-    def write_directory(
-        self,
-        path: Annotated[str, Doc("Directory path to write a directory to")],
-        dir: Annotated[Directory, Doc("Directory contents to write")]
-    ) -> Self:
-        """Writes the provided contents to a directory in the workspace at the provided path"""
-        self.ctr = self.ctr.with_directory(path, dir)
-        return self
-
-    @function
     async def ls(
         self,
         path: Annotated[str, Doc("Path to get the list of files from")]
@@ -93,29 +83,6 @@ class Workspace:
             source = source.with_exec(["git", "init"]).with_exec(["git", "add", "."]).with_exec(["git", "commit", "-m", "'initial'"])
         # return the git diff of the changes in the workspace
         return await source.with_directory(".", self.ctr.directory(".")).with_exec(["git", "diff"]).stdout()
-
-    @function
-    async def exec(
-        self,
-        command: Annotated[str, Doc("command to execute in the workspace")]
-    ) -> Self:
-        """Executes a command in the workspace. Does not return the output of the command"""
-        cmd = (
-            self.ctr
-            .with_exec(["sh", "-c", command], expect=ReturnType.ANY)
-        )
-        if await cmd.exit_code() != 0:
-            raise Exception(f"Command failed: {command}\nError: {await cmd.stderr()}")
-        self.ctr = cmd # FIXME
-        self.last_exec_output = await cmd.stdout()
-        return self
-
-    @function
-    def get_exec_output(
-        self
-    ) -> str:
-        """Returns the output of the last executed command"""
-        return self.last_exec_output
 
     @function
     def container(
