@@ -20,7 +20,7 @@ class Agent:
 
         1. Focus only on Python files within the /app directory.
         2. Begin by reading relevant files from the workspace.
-        3. Run the tests with the test tool to identify the failing tests.
+        3. Run the tests with the test tool to identify the failing tests. Do not use pytest or any other tool.
         4. Read the error messages to identify the root cause of the failures.
         5. Use the diff tool to compare what changed from the original files.
         6. Update the relevant files and/or tests to fix the failing tests.
