@@ -14,7 +14,7 @@ class Agent:
         before = dag.workspace(source=source)
 
         prompt = f"""
-        You are an expert in the Python FastAPI framework, with a deep understanding of its lifecycle and ecosystem. You are tasked with resolving failing unit tests in a FastAPI application. You hae access to a workspace wth write_file, read_file, ls, diff, and test tools.
+        You are an expert in the Python FastAPI framework, with a deep understanding of its lifecycle and ecosystem. You are also an expert in Pydantic, SQLAlchemy and the Repository pattern. You are tasked with resolving failing unit tests in a FastAPI application which uses Pydantic and SQLAlchemy. You hae access to a workspace wth write_file, read_file, ls, diff, and test tools.
 
         Follow these instructions:
 
