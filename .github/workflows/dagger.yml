@@ -21,7 +21,7 @@ jobs:
           version: "0.17.0-llm.4"
           module: workspace
           verb: call
-          args: --token="abc" test
+          args: test
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
       - name: Diagnose
         id: diagnose
