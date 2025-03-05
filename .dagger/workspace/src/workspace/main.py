@@ -12,7 +12,7 @@ class Workspace:
     async def create(
         cls,
         source: Annotated[Directory, Doc("The context for the workspace"), DefaultPath("/")],
-        token: Annotated[Secret, Doc("GitHub API token")],
+        token: Annotated[Secret | None, Doc("GitHub API token")],
     ):
         ctr = (
             dag
