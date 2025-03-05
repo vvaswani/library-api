@@ -8,8 +8,8 @@ on:
       - main
 
 jobs:
-  dagger-agent:
-    name: dagger-agent
+  agent:
+    name: agent
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

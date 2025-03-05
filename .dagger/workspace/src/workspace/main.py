@@ -6,13 +6,13 @@ import re
 class Workspace:
     ctr: Container
     source: Directory
-    token: Secret | None
+    token: Secret
 
     @classmethod
     async def create(
         cls,
         source: Annotated[Directory, Doc("The context for the workspace"), DefaultPath("/")],
-        token: Annotated[Secret, Doc("GitHub API token")],
+        token: Annotated[Secret, Doc("GitHub API token")] | None,
     ):
         ctr = (
             dag
