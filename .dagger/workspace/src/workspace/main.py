@@ -12,6 +12,7 @@ class Workspace:
     async def create(
         cls,
         source: Annotated[Directory, Doc("The context for the workspace"), DefaultPath("/")],
+        token: Annotated[Secret, Doc("GitHub API token")],
     ):
         ctr = (
             dag
@@ -22,7 +23,7 @@ class Workspace:
             .with_mounted_cache("/root/.cache/pip", dag.cache_volume("python-pip"))
             .with_exec(["pip", "install", "-r", "requirements.txt"])
         )
-        return cls(ctr=ctr, source=source)
+        return cls(ctr=ctr, source=source, token=token)
 
     @function
     async def read_file(
@@ -91,14 +92,13 @@ class Workspace:
         repository: Annotated[str, Doc("The owner and repository name")],
         ref: Annotated[str, Doc("The ref name")],
         body: Annotated[str, Doc("The comment body")],
-        token: Annotated[Secret, Doc("The GitHub token")],
     ) -> str:
         """Adds a comment to the PR"""
         repository_url = f"https://github.com/{repository}"
         pr_number = int(re.search(r"(\d+)", ref).group(1))
         return await (
           dag
-          .github_comment(token, repository_url, issue=pr_number)
+          .github_comment(self.token, repository_url, issue=pr_number)
           .create(body)
         )
 
