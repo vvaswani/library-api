@@ -54,6 +54,7 @@ class Agent:
         ref: Annotated[str, Doc("The ref name")],
         token: Secret,
     ) -> str:
+        print(f"""{repository} {ref}""")
         before = dag.workspace(source=source)
 
         prompt = f"""
