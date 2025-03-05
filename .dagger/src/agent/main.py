@@ -70,7 +70,7 @@ class Agent:
 
         Additional requirements:
 
-        Focus only on Python files within the /app directory.
+        Focus only on Python files within the current working directory.
         Begin by reading relevant files from the workspace.
         Use the write_file, read_file, ls, diff, and test tools only.
         Do not interact directly with the database; use the test tool only.
