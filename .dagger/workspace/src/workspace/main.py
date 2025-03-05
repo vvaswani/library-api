@@ -6,7 +6,7 @@ import re
 class Workspace:
     ctr: Container
     source: Directory
-    token: Secret = dag.secret()
+    token: Secret | None = None
 
     @classmethod
     async def create(
