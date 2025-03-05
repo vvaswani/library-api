@@ -6,7 +6,7 @@ import re
 class Workspace:
     ctr: Container
     source: Directory
-    token: Secret
+    token: Secret | None
 
     @classmethod
     async def create(
