@@ -23,9 +23,6 @@ jobs:
           verb: call
           args: test
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
-      - name: Set
-        run: |
-          set
       - name: Diagnose
         id: diagnose
         uses: dagger/dagger-for-github@8.0.0
