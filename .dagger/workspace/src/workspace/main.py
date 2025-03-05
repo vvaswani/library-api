@@ -6,7 +6,7 @@ import re
 class Workspace:
     ctr: Container
     source: Directory
-    last_exec_output: str
+    token: Secret
 
     @classmethod
     async def create(
@@ -22,7 +22,7 @@ class Workspace:
             .with_mounted_cache("/root/.cache/pip", dag.cache_volume("python-pip"))
             .with_exec(["pip", "install", "-r", "requirements.txt"])
         )
-        return cls(ctr=ctr, source=source, last_exec_output="")
+        return cls(ctr=ctr, source=source)
 
     @function
     async def read_file(

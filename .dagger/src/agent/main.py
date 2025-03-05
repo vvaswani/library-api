@@ -52,10 +52,10 @@ class Agent:
         source: Annotated[dagger.Directory, DefaultPath("/")],
         repository: Annotated[str, Doc("The owner and repository name")],
         ref: Annotated[str, Doc("The ref name")],
-        token: Secret,
+        token: Annotated[Secret, Doc("GitHub API token")],
     ) -> str:
-        print(f"""{repository} {ref}""")
-        before = dag.workspace(source=source)
+        print(f"""{repository} {ref} {token}""")
+        before = dag.workspace(source=source, token=token)
 
         prompt = f"""
         You are an expert in the Python FastAPI framework, with a deep understanding of its lifecycle and ecosystem. You are also an expert in Pydantic, SQLAlchemy and the Repository pattern.
